@@ -1,0 +1,28 @@
+{
+  "name": "typescript-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datdev98/typescript-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datdev98/typescript-demo/issues"
+  },
+  "homepage": "https://github.com/datdev98/typescript-demo#readme",
+  "dependencies": {
+    "@types/express": "^4.11.1",
+    "express": "^4.16.3",
+    "inversify": "^4.13.0",
+    "mysql": "^2.15.0",
+    "reflect-metadata": "^0.1.12",
+    "typeorm": "^0.2.0"
+  }
+}
