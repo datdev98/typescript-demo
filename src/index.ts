@@ -13,5 +13,5 @@ app.use(bodyParser.json());
 const controllers: IRegistrableController[] = container.getAll<IRegistrableController>(TYPES.Controller);
 controllers.forEach(controller => controller.register(app));
 
-app.listen(3000);
+app.listen(8000);
 console.log("Waiting for requests...");

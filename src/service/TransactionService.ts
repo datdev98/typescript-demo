@@ -16,7 +16,7 @@ export class TransactionService implements ITransactionService {
         return await this.transactionRepository.create(transaction);
     }
 
-    public async findTransactionById(id: number): Promise<ITransactionModel> {
+    public async findTransactionById(id: string): Promise<ITransactionModel> {
         return await this.transactionRepository.findById(id);
     }
 
@@ -29,12 +29,12 @@ export class TransactionService implements ITransactionService {
         return await this.transactionRepository.findAll();
     }
 
-    public async updateTransaction(id: number, updateInfo: ITransactionModel): Promise<ITransactionModel> {
+    public async updateTransaction(id: string, updateInfo: ITransactionModel): Promise<ITransactionModel> {
         await this.transactionRepository.update(id, updateInfo);
         return await this.findTransactionById(id);
     }
 
-    public async deleteTransation(id: number): Promise<void> {
+    public async deleteTransation(id: string): Promise<void> {
         await this.transactionRepository.delete(id);
     }
 }

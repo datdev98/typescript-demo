@@ -2,9 +2,9 @@ import { ITransactionModel } from "../interfaces/model/ITransactionModel";
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class TransactionMySqlEntity implements ITransactionModel {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class TransactionSqlEntity implements ITransactionModel {
+    @PrimaryGeneratedColumn('uuid')
+    _id?: string;
     
     @Column({
         length: 65

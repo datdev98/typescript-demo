@@ -3,16 +3,16 @@ import { Repository, Connection, createConnection } from "typeorm";
 
 import { ITransactionRepository } from "../interfaces/repository/ITransactionRepository";
 import { ITransactionModel } from "../interfaces/model/ITransactionModel";
-import { TransactionMySqlEntity } from "../model/TransactionMySqlModel";
+import { TransactionSqlEntity } from "../model/TransactionSqlModel";
 
 
 @injectable()
 export class TransactionMySqlRepository implements ITransactionRepository {
-    private transactionRepository: Repository<TransactionMySqlEntity>;
+    protected transactionRepository: Repository<ITransactionModel>;
 
     constructor() {
         this.connect().then(async connection => {
-            this.transactionRepository = connection.getRepository(TransactionMySqlEntity);
+            this.transactionRepository = connection.getRepository(TransactionSqlEntity);
         })
         .catch(error => {
             console.log(error);
@@ -28,7 +28,7 @@ export class TransactionMySqlRepository implements ITransactionRepository {
         return await this.transactionRepository.find();
     }
 
-    public async findById(id: number): Promise<ITransactionModel> {
+    public async findById(id: string): Promise<ITransactionModel> {
         return await this.transactionRepository.findOne(id);
     }
 
@@ -37,12 +37,12 @@ export class TransactionMySqlRepository implements ITransactionRepository {
         return await this.transactionRepository.findOne({hash: _hash});
     }  
 
-    public async update(_id: number, transaction: ITransactionModel): Promise<void>{
-        await this.transactionRepository.update({id: _id}, transaction);
+    public async update(id: string, transaction: ITransactionModel): Promise<void>{
+        await this.transactionRepository.update({_id: id}, transaction);
     }
     
-    public async delete(_id: number): Promise<ITransactionModel> {
-        const transaction: TransactionMySqlEntity = await this.transactionRepository.findOne({id: _id});
+    public async delete(id: string): Promise<ITransactionModel> {
+        const transaction: TransactionSqlEntity = await this.transactionRepository.findOne({_id: id});
         return await this.transactionRepository.remove(transaction);
     }
 
@@ -55,7 +55,7 @@ export class TransactionMySqlRepository implements ITransactionRepository {
             password: "32897285",
             database: "mydb",
             entities: [
-                TransactionMySqlEntity
+                TransactionSqlEntity
             ],
             synchronize: true,
             logging: false

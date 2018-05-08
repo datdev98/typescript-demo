@@ -1,5 +1,5 @@
 export interface ITransactionModel {
-    id?: number;
+    _id?: string;
     hash: string;
     amount: number;
     content?: string;
